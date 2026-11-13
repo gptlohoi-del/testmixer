@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#17315f">
-  <meta name="description" content="Trang theo dõi và triển khai công việc nhiều cấp, dễ chỉnh sửa trực tiếp trên GitHub.">
-  <title>Cây triển khai công việc</title>
+  <meta name="description" content="Hướng dẫn kiểm tra kết nối âm thanh laptop Windows với mixer Yamaha MG10XU và các ngõ ra dự phòng 6,35 mm.">
+  <title>Kiểm tra kết nối âm thanh Windows ↔ MG10XU</title>
 
   <script>
   /*
@@ -13,141 +13,321 @@
   ✏️  BẮT ĐẦU DỮ LIỆU CÔNG VIỆC — CHỈ CẦN SỬA PHẦN NÀY TRÊN GITHUB
   ======================================================================
 
-  - Đổi tenDuAn và gioiThieu để đặt tên trang.
-  - Mỗi mục có:
-       ten:       Tên công việc / nội dung / bước hướng dẫn.
-       noiDung:   Phần giải thích (có thể viết nhiều dòng bằng dấu `...`).
-       trangThai: "Chưa làm", "Đang làm" hoặc "Hoàn thành" (không bắt buộc).
-       lienKet:   Danh sách liên kết (không bắt buộc).
-       con:       Các mục cấp nhỏ hơn. Có thể lồng BAO NHIÊU CẤP CŨNG ĐƯỢC.
-  - Muốn tạo mục cùng cấp: sao chép một khối { ... }, và dán vào mảng con.
-  - Nhớ có dấu phẩy giữa các mục cùng cấp.
-  - Chỉ sửa nội dung giữa dòng BẮT ĐẦU và KẾT THÚC DỮ LIỆU.
+  CÁCH SỬA:
+  - Đổi tenDuAn, gioiThieu để sửa tên trang và đoạn giới thiệu.
+  - ten: tên công việc / bước kiểm tra.
+  - noiDung: mục đích, thiết bị, thao tác, kết quả mong đợi.
+            Viết nhiều dòng giữa hai dấu ` (dấu huyền).
+  - lienKet: tài liệu tham khảo (có thể xóa nếu không dùng).
+  - con: các mục nhỏ hơn. Có thể lồng không giới hạn số cấp.
+  - Thêm mục cùng cấp: sao chép cả khối { ... } và ngăn bằng dấu phẩy.
+  - Không cần sửa JavaScript và CSS ở bên dưới.
   */
 
   const DU_LIEU_CONG_VIEC = {
-    tenDuAn: "KẾ HOẠCH TRIỂN KHAI CÔNG VIỆC",
-    gioiThieu: "Quản lý đầu việc, hạng mục, các bước thực hiện và hướng dẫn chi tiết trong một trang.",
-
+    tenDuAn: "KIỂM TRA KẾT NỐI ÂM THANH LAPTOP WINDOWS ↔ MIXER MG10XU",
+    gioiThieu: "Kế hoạch kiểm tra truyền/nhận qua USB để phát nhạc, ghi âm và dịch thuật đồng thời; đồng thời kiểm tra các ngõ ra 6,35 mm làm phương án dự phòng.",
     congViec: [
       {
-        ten: "1. Chuẩn bị dự án",
-        noiDung: `Hoàn thiện đầu vào trước khi triển khai.
-Người phụ trách có thể bổ sung tài liệu, thời hạn và lưu ý tại đây.`,
-        trangThai: "Đang làm",
+        ten: "1. Công việc chính — Kiểm tra truyền/nhận âm thanh giữa laptop Windows và mixer MG10XU",
+        noiDung: `MỤC ĐÍCH
+Laptop phải truyền và nhận tín hiệu âm thanh với mixer Yamaha MG10XU để có thể thực hiện đồng thời: phát nhạc, ghi âm và dịch thuật.
+
+THIẾT BỊ
+• Laptop Windows.
+• Mixer Yamaha MG10XU và nguồn điện phù hợp.
+• Dây USB kết nối mixer và laptop (đầu USB-B ở mixer; đầu còn lại phù hợp với laptop).
+• Khi kiểm tra thực tế nên có thêm nguồn âm thanh đầu vào (ví dụ micro) và tai nghe/loa để nghe thử.
+
+KẾT QUẢ MONG ĐỢI
+Xác nhận riêng từng chiều tín hiệu, sau đó thử cả ba công việc cùng lúc mà không mất âm, rè hoặc tạo vòng lặp âm thanh.`,
+        lienKet: [
+          { ten: "Hướng dẫn sử dụng MG10XU — Yamaha (PDF)", url: "https://data.yamaha.com/files/download/other_assets/8/1506958/MG10XU_owners_manual_En_B0.pdf" },
+          { ten: "Hướng dẫn định tuyến âm thanh MG Series — Yamaha", url: "https://asia-oceania.yamaha.com/en/audio/portable-pa/explore/mg-series/manual-interface.html" },
+        ],
         con: [
           {
-            ten: "Khảo sát và thu thập yêu cầu",
-            noiDung: "Tập hợp các thông tin cần thiết từ các bên liên quan.",
-            trangThai: "Đang làm",
+            ten: "1.1. Chuẩn bị và kết nối thiết bị",
+            noiDung: `Kiểm tra kết nối vật lý, nguồn điện và thiết bị âm thanh mà Windows nhận diện.`,
             con: [
               {
-                ten: "Lập danh sách yêu cầu",
-                noiDung: `Bước 1: Ghi lại từng yêu cầu.
-Bước 2: Xác định người đưa ra yêu cầu.
-Bước 3: Phân loại mức độ ưu tiên.`,
-                con: [
-                  {
-                    ten: "Hướng dẫn ghi yêu cầu",
-                    noiDung: `Mỗi yêu cầu nên gồm:
-- Tên yêu cầu
-- Mô tả cụ thể
-- Người phụ trách
-- Kết quả mong đợi
-- Thời hạn dự kiến`,
-                    trangThai: "Chưa làm"
-                  }
+                ten: "1.1.1. Kiểm tra dây và cổng USB",
+                noiDung: `1. Tắt hoặc hạ âm lượng các loa/tai nghe trước khi cắm dây.
+2. Cắm đầu USB-B vào cổng USB 2.0 ở mặt sau MG10XU; cắm đầu còn lại vào laptop.
+3. Kiểm tra dây không lỏng, cổng không hư và mixer đã có nguồn.
+4. Nếu Windows không nhận thiết bị, thử cổng USB khác hoặc dây khác; tránh dùng hub USB khi khoanh vùng lỗi.`
+              },
+              {
+                ten: "1.1.2. Kiểm tra thiết bị âm thanh trong Windows",
+                noiDung: `1. Mở Cài đặt → Hệ thống → Âm thanh (Settings → System → Sound).
+2. Xem danh sách thiết bị Đầu ra (Output) và Đầu vào (Input).
+3. Tìm thiết bị âm thanh USB tương ứng MG10XU/USB Audio/Yamaha Steinberg USB (tên hiển thị có thể khác theo driver).
+4. Ghi lại tên thiết bị được nhận ở cả hai mục.
+5. Nếu không xuất hiện, kiểm tra driver phù hợp với phiên bản Windows trên trang Yamaha.`,
+                lienKet: [
+                  { ten: "Trang tải driver và tài liệu Yamaha", url: "https://download.yamaha.com/" },
                 ]
               },
               {
-                ten: "Xác nhận phạm vi",
-                noiDung: "Đối chiếu danh sách với các bên liên quan trước khi chốt.",
-                trangThai: "Chưa làm"
-              }
+                ten: "1.1.3. Thiết lập âm lượng an toàn",
+                noiDung: `1. Đưa âm lượng loa/tai nghe về mức nhỏ trước khi thử.
+2. Đặt LEVEL các kênh và MONITOR/PHONES ở mức thấp rồi tăng từ từ.
+3. Theo dõi đèn PEAK; nếu thường xuyên sáng đỏ, giảm mức tín hiệu.
+4. Nếu dùng micro condenser cần nguồn phantom +48V, chỉ bật khi đã xác nhận micro và thiết bị kết nối phù hợp.`
+              },
             ]
           },
           {
-            ten: "Chuẩn bị nguồn lực",
-            noiDung: "Xác định nhân sự, công cụ, chi phí và tài liệu liên quan.",
-            trangThai: "Chưa làm"
-          }
+            ten: "1.2. Kiểm tra chiều laptop → mixer (PHÁT NHẠC)",
+            noiDung: `Mục tiêu: Laptop phát được nhạc và nghe được âm thanh tại ngõ ra theo dõi của mixer.`,
+            con: [
+              {
+                ten: "1.2.1. Chọn thiết bị phát trên Windows",
+                noiDung: `1. Vào Cài đặt → Hệ thống → Âm thanh → Đầu ra (Output).
+2. Chọn thiết bị USB của MG10XU.
+3. Phát một đoạn nhạc hoặc tệp kiểm tra âm thanh.
+4. Đảm bảo phần mềm phát nhạc không chọn nhầm loa tích hợp của laptop.`
+              },
+              {
+                ten: "1.2.2. Chọn đường nhận USB trên mixer",
+                noiDung: `1. Trên kênh 9/10, đặt công tắc LINE/USB sang USB.
+2. Tăng LEVEL của kênh 9/10 từ từ.
+3. Để thử nghe nhạc đồng thời ghi âm qua máy tính, ưu tiên đặt TO MON/TO ST sang TO MON và nghe tại PHONES hoặc MONITOR OUT.
+4. Chỉnh MONITOR/PHONES để đạt mức nghe vừa phải.
+
+LƯU Ý: Nếu đặt TO ST, tín hiệu phát từ laptop có thể đi vào stereo bus và quay lại máy tính qua USB; khi ghi/giám sát bằng phần mềm có nguy cơ lặp tín hiệu, vọng hoặc hú.`
+              },
+              {
+                ten: "1.2.3. Xác nhận kết quả phát nhạc",
+                noiDung: `• Nghe rõ nhạc qua tai nghe ở PHONES hoặc hệ thống loa kết nối MONITOR OUT.
+• Thay đổi âm lượng phát trên laptop và LEVEL kênh 9/10 để xác nhận đúng đường tín hiệu.
+• Nếu không có tiếng, kiểm tra lại thiết bị Output Windows, LINE/USB, TO MON/TO ST, LEVEL 9/10, MONITOR/PHONES và STEREO MUTE.
+• Lưu ý: Khi TO MON được chọn, tín hiệu USB từ kênh 9/10 không được đưa vào STEREO OUT.`
+              },
+            ]
+          },
+          {
+            ten: "1.3. Kiểm tra chiều mixer → laptop (GHI ÂM)",
+            noiDung: `Mục tiêu: Windows thu được tín hiệu phát sinh tại mixer qua đường USB.`,
+            con: [
+              {
+                ten: "1.3.1. Tạo tín hiệu thử tại đầu vào mixer",
+                noiDung: `1. Kết nối micro phù hợp hoặc nguồn âm thanh thử vào một kênh input của mixer (nếu có).
+2. Điều chỉnh GAIN/LEVEL của kênh để có tín hiệu sạch và tránh PEAK đỏ.
+3. Bảo đảm tín hiệu thử được đưa vào stereo bus để gửi qua USB về laptop.
+
+LƯU Ý: Chỉ có laptop, mixer và dây USB chưa đủ để xác thực đầy đủ chiều ghi âm nếu không tạo được tín hiệu đầu vào trên mixer.`
+              },
+              {
+                ten: "1.3.2. Chọn đầu vào ghi âm trong Windows",
+                noiDung: `1. Vào Cài đặt → Hệ thống → Âm thanh → Đầu vào (Input).
+2. Chọn thiết bị USB của MG10XU làm micro/thiết bị thu âm.
+3. Kiểm tra quyền truy cập micro của Windows đối với ứng dụng ghi âm.
+4. Quan sát thanh mức âm thanh đầu vào khi nói vào micro hoặc phát tín hiệu thử.`
+              },
+              {
+                ten: "1.3.3. Thu và nghe lại bản ghi thử",
+                noiDung: `1. Mở Sound Recorder (Máy ghi âm) hoặc ứng dụng ghi âm đang dùng.
+2. Ghi 10–20 giây có âm thanh từ mixer.
+3. Dừng ghi và phát lại bản thu.
+4. Xác nhận tiếng rõ, không đứt đoạn, không rè và không lẫn tiếng nhạc ngoài ý muốn.
+5. Nếu không thu được, xem lại lựa chọn Input, LEVEL/GAIN, đường stereo bus và quyền micro của ứng dụng.`
+              },
+            ]
+          },
+          {
+            ten: "1.4. Thử đồng thời PHÁT NHẠC + GHI ÂM + DỊCH THUẬT",
+            noiDung: `Mục tiêu: Kiểm chứng yêu cầu sử dụng thực tế khi nhiều phần mềm hoạt động cùng lúc.`,
+            con: [
+              {
+                ten: "1.4.1. Bố trí đường tín hiệu để tránh lặp tiếng",
+                noiDung: `• Âm thanh từ laptop → USB → kênh 9/10 của mixer → TO MON → PHONES/MONITOR OUT.
+• Âm thanh cần thu → kênh đầu vào mixer → stereo bus → USB → laptop.
+• Không đưa tín hiệu USB phát lại về stereo bus khi phần mềm đang thu hoặc giám sát chính bus đó, trừ khi đã thiết kế đường tín hiệu riêng và kiểm soát vòng lặp.`
+              },
+              {
+                ten: "1.4.2. Mở các ứng dụng cần dùng",
+                noiDung: `1. Mở trình phát nhạc và chọn MG10XU làm thiết bị phát (nếu ứng dụng cho phép chọn riêng).
+2. Mở ứng dụng ghi âm và chọn MG10XU làm thiết bị thu.
+3. Mở phần mềm dịch thuật có tính năng nhận giọng nói/âm thanh; chọn MG10XU làm đầu vào phù hợp.
+4. Cấp quyền micro cho các ứng dụng; lưu ý một số ứng dụng/driver có thể giới hạn chia sẻ thiết bị thu hoặc phát giữa nhiều phần mềm.`
+              },
+              {
+                ten: "1.4.3. Kiểm tra trong một phiên chạy",
+                noiDung: `1. Bắt đầu phát nhạc ở mức vừa phải.
+2. Bắt đầu ghi âm.
+3. Nói một câu ngắn qua đầu vào mixer và kích hoạt nhận dạng/dịch thuật.
+4. Kiểm tra: nhạc vẫn phát; bản ghi có tiếng cần thu; phần mềm dịch thuật nhận được âm và tạo kết quả.
+5. Nghe lại bản ghi, chú ý nhạc có bị thu lẫn ngoài ý muốn, tiếng bị vọng hoặc độ trễ có gây trở ngại hay không.
+6. Nếu phần mềm không thể dùng đồng thời, ghi rõ tên ứng dụng và giới hạn để tìm cách định tuyến hoặc dùng thiết bị âm thanh riêng.`
+              },
+              {
+                ten: "1.4.4. Tiêu chí nghiệm thu công việc chính",
+                noiDung: `• Windows nhận MG10XU ở cả Input và Output.
+• Laptop → mixer: nghe được nhạc theo đúng ngõ ra đã chọn.
+• Mixer → laptop: ghi được âm thanh thử rõ ràng.
+• Phát nhạc, ghi âm và ứng dụng dịch thuật có thể chạy cùng lúc theo kịch bản sử dụng thực tế.
+• Không có hú, vòng lặp tín hiệu hoặc méo tiếng đáng kể.
+• Ghi lại cấu hình công tắc/phần mềm hoạt động ổn định để có thể lặp lại.`
+              },
+            ]
+          },
+          {
+            ten: "1.5. Xử lý nhanh khi thử không đạt",
+            noiDung: `Thử khoanh vùng từng chiều riêng lẻ trước khi chạy cả ba chức năng.`,
+            con: [
+              {
+                ten: "Laptop không phát được tiếng qua mixer",
+                noiDung: `Kiểm tra USB, thiết bị Output Windows, LINE/USB kênh 9/10, công tắc TO MON/TO ST, LEVEL 9/10, MONITOR/PHONES, dây và thiết bị nghe.`
+              },
+              {
+                ten: "Laptop không nhận tiếng ghi âm",
+                noiDung: `Kiểm tra thiết bị Input Windows, quyền micro của ứng dụng, mức GAIN/LEVEL, nguồn âm đầu vào và việc tín hiệu có được đưa đến stereo bus hay không.`
+              },
+              {
+                ten: "Có tiếng vọng/hú hoặc ghi lẫn tiếng nhạc",
+                noiDung: `Kiểm tra công tắc TO MON/TO ST. Với cấu hình thu stereo bus qua USB, nên dùng TO MON cho kênh USB 9/10 để tránh tín hiệu laptop phát lại quay về ngõ thu.`
+              },
+              {
+                ten: "Mất tiếng khi mở phần mềm dịch thuật",
+                noiDung: `Kiểm tra ứng dụng đang chọn input/output nào, quyền micro và khả năng dùng thiết bị âm thanh đồng thời; thử từng ứng dụng rồi mới mở cùng lúc.`
+              },
+            ]
+          },
         ]
       },
       {
-        ten: "2. Triển khai thực hiện",
-        noiDung: "Chia công việc lớn thành các hạng mục và hướng dẫn nhỏ hơn.",
-        trangThai: "Đang làm",
+        ten: "2. Công việc phụ — Kiểm tra các cổng 6,35 mm để dự phòng khi USB mixer gặp sự cố",
+        noiDung: `MỤC ĐÍCH
+Kiểm tra tín hiệu âm thanh ở bốn loại cổng: FX SEND, MONITOR OUT, STEREO OUT và PHONES. Đây là phương án dự phòng nếu cổng USB trên mixer xảy ra sự cố.
+
+THIẾT BỊ
+• Mixer Yamaha MG10XU và nguồn âm thanh thử.
+• Thiết bị nhận âm thanh có kết nối phù hợp 6,35 mm: tai nghe, loa chủ động, amply hoặc thiết bị kiểm tra tín hiệu.
+• Dây 6,35 mm phù hợp từng cổng.
+
+LƯU Ý AN TOÀN
+PHONES là ngõ ra dành cho tai nghe. FX SEND, MONITOR OUT và STEREO OUT là ngõ ra mức line: nên nối đến loa chủ động, amply, bộ khuếch đại tai nghe hoặc thiết bị có ngõ vào line tương thích; không mặc định cắm tai nghe thụ động trực tiếp vào các ngõ line.
+
+PHẠM VI DỰ PHÒNG
+Kiểm tra ngõ ra 6,35 mm giúp xác nhận khả năng lấy âm thanh ra khỏi mixer, nhưng chưa tự động thay thế được cả chiều ghi âm và phát nhạc qua USB; laptop còn phải có đường âm thanh analog vào/ra phù hợp.`,
+        lienKet: [
+          { ten: "Sơ đồ cổng kết nối MG10XU — tài liệu Yamaha", url: "https://data.yamaha.com/files/download/other_assets/8/1506958/MG10XU_owners_manual_En_B0.pdf" },
+        ],
         con: [
           {
-            ten: "Hạng mục A — Thiết kế",
-            noiDung: "Chuẩn bị phương án, bản mẫu và tiêu chí đánh giá.",
-            trangThai: "Hoàn thành",
+            ten: "2.1. Chuẩn bị nguồn tín hiệu và thiết bị nghe thử",
+            noiDung: `1. Chuẩn bị micro/nguồn phát đưa tín hiệu vào mixer (hoặc tín hiệu thử khác đã xác thực).
+2. Kết nối thiết bị nhận theo loại cổng: tai nghe vào PHONES; thiết bị line vào các ngõ còn lại.
+3. Giảm âm lượng và tăng dần trong khi kiểm tra.
+4. Nếu thử cổng L/R, kiểm tra từng bên hoặc cả hai bên để xác định đủ kênh.
+5. Trước khi đổi dây, nên giảm âm lượng hoặc tắt thiết bị có công suất lớn để tránh tiếng nổ loa.`
+          },
+          {
+            ten: "2.2. Kiểm tra cổng FX SEND (6,35 mm)",
+            noiDung: `Chức năng: Xuất tín hiệu của đường FX từ các kênh được điều chỉnh bằng núm FX tương ứng; đây là ngõ gửi tín hiệu, không phải cổng tai nghe.`,
             con: [
               {
-                ten: "Phác thảo phương án",
-                noiDung: "Nêu phương án 1, phương án 2 và ưu/nhược điểm của từng phương án.",
-                trangThai: "Hoàn thành"
+                ten: "Cách thực hiện",
+                noiDung: `1. Đưa nguồn âm thanh thử vào một kênh mixer.
+2. Cắm FX SEND đến ngõ vào line của thiết bị nhận phù hợp bằng dây 6,35 mm.
+3. Tăng FX trên kênh đang phát tín hiệu, đồng thời kiểm tra mức đầu vào/đầu ra của thiết bị nhận.
+4. Nghe hoặc đo mức tín hiệu; giảm FX để xác nhận tín hiệu thay đổi theo núm FX.`
               },
               {
-                ten: "Duyệt phương án",
-                noiDung: "Chốt phiên bản được lựa chọn và lưu kết quả phê duyệt.",
-                trangThai: "Hoàn thành"
-              }
+                ten: "Kết quả mong đợi",
+                noiDung: `Thiết bị nhận có tín hiệu khi kênh có nguồn âm và núm FX được mở; tín hiệu giảm khi hạ núm FX. Ghi nhận cổng này mang đường FX riêng, không mặc định là bản sao hoàn toàn của STEREO OUT.`
+              },
             ]
           },
           {
-            ten: "Hạng mục B — Thực hiện",
-            noiDung: "Theo dõi công việc thực tế và bổ sung hướng dẫn theo từng bước.",
-            trangThai: "Đang làm",
+            ten: "2.3. Kiểm tra cổng MONITOR OUT L/R (6,35 mm)",
+            noiDung: `Chức năng: Ngõ ra theo dõi L/R dành cho loa kiểm âm hoặc thiết bị nhận mức line.`,
             con: [
               {
-                ten: "Bước 1 — Chuẩn bị",
-                noiDung: "Kiểm tra đủ nguồn lực và tài liệu đầu vào.",
-                trangThai: "Đang làm"
+                ten: "Cách thực hiện",
+                noiDung: `1. Cắm MONITOR OUT L/R vào hai ngõ vào line của loa chủ động/amply (hoặc thử riêng từng bên).
+2. Đưa nguồn âm thử vào stereo bus của mixer.
+3. Kiểm tra STEREO MUTE đang tắt nếu muốn nghe stereo bus qua MONITOR OUT.
+4. Tăng MONITOR/PHONES dần để nghe tín hiệu.
+5. Nếu đang phát nhạc qua USB với 9/10 đặt TO MON, kiểm tra tín hiệu theo dõi từ kênh USB.`
               },
               {
-                ten: "Bước 2 — Thực hiện chi tiết",
-                noiDung: "Làm lần lượt theo hướng dẫn ở các cấp con.",
-                con: [
-                  {
-                    ten: "Hướng dẫn thao tác",
-                    noiDung: `1. Mở hệ thống hoặc công cụ liên quan.
-2. Kiểm tra thông tin đầu vào.
-3. Thực hiện công việc.
-4. Ghi lại kết quả và lỗi (nếu có).`,
-                    lienKet: [
-                      { ten: "Ví dụ: Tài liệu tham khảo", url: "https://docs.github.com/vi/pages" }
-                    ],
-                    con: [
-                      {
-                        ten: "Lưu ý khi thao tác",
-                        noiDung: "Bạn có thể tiếp tục tạo cấp 6, cấp 7... bằng cách thêm vào mảng con.",
-                        trangThai: "Chưa làm"
-                      }
-                    ]
-                  }
-                ]
-              }
+                ten: "Kết quả mong đợi",
+                noiDung: `Nghe được tín hiệu ở L/R, mức âm thay đổi theo MONITOR/PHONES. Khi STEREO MUTE bật, đường stereo bus bị ngắt khỏi MONITOR OUT; âm từ kênh 9/10 đặt TO MON có thể vẫn được nghe.`
+              },
             ]
-          }
-        ]
-      },
-      {
-        ten: "3. Kiểm tra và bàn giao",
-        noiDung: "Rà soát kết quả, tổng hợp tài liệu và bàn giao công việc.",
-        trangThai: "Chưa làm",
-        con: [
-          {
-            ten: "Kiểm tra chất lượng",
-            noiDung: "Đối chiếu kết quả với yêu cầu ban đầu.",
-            trangThai: "Chưa làm"
           },
           {
-            ten: "Hướng dẫn sử dụng và bàn giao",
-            noiDung: `Chuẩn bị tài liệu bàn giao.
-Xác nhận người nhận và ngày hoàn thành.`,
-            trangThai: "Chưa làm"
-          }
+            ten: "2.4. Kiểm tra cổng STEREO OUT L/R (6,35 mm)",
+            noiDung: `Chức năng: Ngõ xuất stereo chính của mixer đến loa chủ động hoặc bộ khuếch đại.`,
+            con: [
+              {
+                ten: "Cách thực hiện",
+                noiDung: `1. Cắm STEREO OUT L/R (jack 6,35 mm) vào ngõ vào line tương thích của loa chủ động hoặc amply.
+2. Cho nguồn âm thử đi vào stereo bus từ một kênh mixer.
+3. Mở LEVEL kênh và tăng STEREO LEVEL dần.
+4. Kiểm tra đủ tín hiệu ở cả L và R; quan sát đèn mức tín hiệu để tránh quá tải.`
+              },
+              {
+                ten: "Kết quả mong đợi",
+                noiDung: `Nghe được âm thanh chính ở hai ngõ L/R và âm lượng thay đổi theo STEREO LEVEL. Lưu ý: Nếu USB 9/10 đang được định tuyến TO MON thì âm USB đó không đi đến STEREO OUT.`
+              },
+            ]
+          },
+          {
+            ten: "2.5. Kiểm tra cổng PHONES (6,35 mm)",
+            noiDung: `Chức năng: Ngõ ra tai nghe stereo 6,35 mm TRS.`,
+            con: [
+              {
+                ten: "Cách thực hiện",
+                noiDung: `1. Cắm tai nghe stereo có jack 6,35 mm phù hợp vào PHONES.
+2. Giảm MONITOR/PHONES trước khi đeo tai nghe, sau đó tăng rất từ từ.
+3. Phát nguồn âm thử qua mixer và kiểm tra hai tai trái/phải.
+4. Kiểm tra tác động của MONITOR/PHONES và STEREO MUTE.
+5. Có thể kiểm tra đường nghe riêng của USB 9/10 bằng thiết lập TO MON.`
+              },
+              {
+                ten: "Kết quả mong đợi",
+                noiDung: `Tai nghe nhận được tín hiệu rõ, hai bên hoạt động bình thường, âm lượng được điều khiển bằng MONITOR/PHONES.`
+              },
+            ]
+          },
+          {
+            ten: "2.6. Kiểm tra khả năng áp dụng phương án dự phòng cho laptop",
+            noiDung: `Xác định đường kết nối thực tế khi USB trên mixer bị hỏng, thay vì chỉ xác nhận các cổng 6,35 mm còn âm.`,
+            con: [
+              {
+                ten: "Chiều laptop → mixer khi không dùng USB mixer",
+                noiDung: `Có thể dùng ngõ ra tai nghe/line-out của laptop hoặc thiết bị âm thanh rời kết nối đến một ngõ LINE của mixer qua dây chuyển phù hợp.
+Kiểm tra phát nhạc và theo dõi âm lượng đầu vào. Không dùng dây chuyển không đúng sơ đồ chân hoặc mức tín hiệu.`
+              },
+              {
+                ten: "Chiều mixer → laptop khi không dùng USB mixer",
+                noiDung: `Để thu âm/dịch thuật trên Windows, cần đưa tín hiệu từ một ngõ ra phù hợp của mixer đến ngõ vào line của sound card/audio interface tương thích với laptop.
+Nhiều cổng 3,5 mm trên laptop chỉ hỗ trợ tai nghe + mic và KHÔNG phải ngõ vào line. Không nối trực tiếp tín hiệu line mạnh từ STEREO OUT/MONITOR OUT/FX SEND vào ngõ mic laptop khi chưa có phần cứng/chuyển mức phù hợp.`
+              },
+              {
+                ten: "Điều kiện để phương án dự phòng đạt yêu cầu",
+                noiDung: `• Có đường phát nhạc từ laptop vào mixer độc lập với USB mixer.
+• Có đường đưa tín hiệu mixer về laptop bằng ngõ vào âm thanh tương thích.
+• Đã kiểm tra phần mềm ghi âm và dịch thuật nhận được tín hiệu từ ngõ vào dự phòng.
+• Mức tín hiệu, loại jack và dây chuyển đúng với từng ngõ; không rè, méo hoặc hú.
+• Ghi lại dây/thiết bị bổ sung cần mua nếu chưa có đủ.`
+              },
+            ]
+          },
+          {
+            ten: "2.7. Tổng hợp kết quả kiểm tra các cổng",
+            noiDung: `Ghi lại sau khi thử:
+• FX SEND: có/không có tín hiệu; thiết bị nhận; lưu ý.
+• MONITOR OUT L: có/không có tín hiệu; MONITOR OUT R: có/không có tín hiệu.
+• STEREO OUT L: có/không có tín hiệu; STEREO OUT R: có/không có tín hiệu.
+• PHONES: có/không có tín hiệu; tai trái/tai phải.
+• Phương án analog dự phòng: đã có/chưa có đủ đường laptop ↔ mixer để phát, ghi âm và dịch thuật.
+
+Có thể cập nhật các dòng này trong noiDung ngay trên GitHub sau mỗi lần thử.`
+          },
         ]
       }
     ]
@@ -228,11 +408,6 @@ Xác nhận người nhận và ngày hoàn thành.`,
     .node-name { min-width: 0; flex: 1; overflow-wrap: anywhere; font-size: .96rem; font-weight: 690; }
     .tree > .task-node > .node-trigger .node-name { font-size: 1.04rem; font-weight: 800; }
     .node-count { color: #70809a; font-weight: 550; font-size: .76rem; white-space: nowrap; }
-    .status { border-radius: 999px; padding: 4px 9px; white-space: nowrap; font-size: .74rem; font-weight: 750; }
-    .status.todo { color: #8b621d; background: #fff3d8; }
-    .status.doing { color: #24549d; background: #e8f0ff; }
-    .status.done { color: #187247; background: #dcf6e7; }
-    .status.other { color: #636b7b; background: #edf0f5; }
     .node-body { padding: 0 16px 16px 53px; }
     .tree > .task-node > .node-body { padding: 0 19px 18px 58px; }
     .node-body[hidden] { display: none; }
@@ -272,7 +447,6 @@ Xác nhận người nhận và ngày hoàn thành.`,
       .node-trigger { gap: 8px; }
       .node-name { font-size: .91rem; }
       .node-count { display: none; }
-      .status { padding: 3px 7px; font-size: .68rem; }
       .tree > .task-node > .node-body { padding-left: 24px; padding-right: 10px; }
       .node-body { padding-left: 16px; padding-right: 5px; }
       .children { padding-left: 7px; }
@@ -284,13 +458,13 @@ Xác nhận người nhận và ngày hoàn thành.`,
 <body>
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">CÔNG VIỆC · NHIỀU CẤP · DỄ THEO DÕI</p>
+      <p class="eyebrow">HƯỚNG DẪN KIỂM TRA ÂM THANH · NHIỀU CẤP</p>
       <h1 id="project-title">Cây triển khai công việc</h1>
       <p id="project-description" class="subtitle"></p>
       <div class="overview" aria-label="Thống kê công việc">
         <div class="metric"><strong id="main-count">0</strong><span>Công việc chính</span></div>
         <div class="metric"><strong id="total-count">0</strong><span>Tổng số đầu mục</span></div>
-        <div class="metric"><strong id="done-count">0</strong><span>Mục hoàn thành</span></div>
+        <div class="metric"><strong id="depth-count">0</strong><span>Số cấp nội dung</span></div>
       </div>
     </div>
   </header>
@@ -319,7 +493,7 @@ Xác nhận người nhận và ngày hoàn thành.`,
         <ol>
           <li>Mở repository trên GitHub, chọn file <strong>index.html</strong> rồi bấm biểu tượng <strong>bút chì (Edit)</strong>.</li>
           <li>Tìm cụm <strong>BẮT ĐẦU DỮ LIỆU CÔNG VIỆC</strong> ở gần đầu file. Chỉ cần sửa phần <code>DU_LIEU_CONG_VIEC</code>.</li>
-          <li>Đổi <code>ten</code> để sửa tiêu đề, <code>noiDung</code> để sửa hướng dẫn, <code>trangThai</code> để đổi trạng thái. Muốn thêm cấp mới, thêm mục vào <code>con: [ ... ]</code>.</li>
+          <li>Đổi <code>ten</code> để sửa tên bước và <code>noiDung</code> để sửa mục đích, thiết bị, hướng dẫn hoặc kết quả kiểm tra. Muốn thêm cấp mới, thêm mục vào <code>con: [ ... ]</code>. Có thể thêm <code>lienKet</code> cho tài liệu liên quan.</li>
           <li>Bấm <strong>Commit changes</strong>. Nếu repository đã bật <strong>GitHub Pages</strong>, trang web sẽ được cập nhật sau khi triển khai.</li>
         </ol>
         <p><strong>Mẫu một mục công việc:</strong> Có thể sao chép khối sau và đặt trong một mảng <code>con</code> hoặc <code>congViec</code>.</p>
@@ -327,7 +501,6 @@ Xác nhận người nhận và ngày hoàn thành.`,
   ten: "Tên công việc hoặc hướng dẫn",
   noiDung: `Dòng mô tả thứ nhất.
 Dòng mô tả thứ hai.`,
-  trangThai: "Chưa làm",
   con: [
     {
       ten: "Bước nhỏ hơn",
@@ -389,16 +562,16 @@ Dòng mô tả thứ hai.`,
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...openKeys])); } catch { /* Chế độ riêng tư có thể chặn lưu. */ }
     };
 
-    const stats = { total: 0, done: 0 };
-    const traverse = nodes => nodes.forEach(node => {
+    const stats = { total: 0, depth: 0 };
+    const traverse = (nodes, depth = 1) => nodes.forEach(node => {
       stats.total++;
-      if (normalize(node.trangThai) === "hoan thanh") stats.done++;
-      traverse(childrenOf(node));
+      stats.depth = Math.max(stats.depth, depth);
+      traverse(childrenOf(node), depth + 1);
     });
     traverse(tasks);
     document.getElementById("main-count").textContent = tasks.length;
     document.getElementById("total-count").textContent = stats.total;
-    document.getElementById("done-count").textContent = stats.done;
+    document.getElementById("depth-count").textContent = stats.depth;
 
     const el = (tag, className, text) => {
       const element = document.createElement(tag);
@@ -407,18 +580,10 @@ Dòng mô tả thứ hai.`,
       return element;
     };
 
-    const statusKind = status => {
-      switch (normalize(status)) {
-        case "chua lam": return "todo";
-        case "dang lam": return "doing";
-        case "hoan thanh": return "done";
-        default: return "other";
-      }
-    };
 
     const isMatch = (node, query) => {
       const links = Array.isArray(node.lienKet) ? node.lienKet : [];
-      const combined = [node.ten, node.noiDung, node.trangThai, ...links.map(link => link.ten)].join(" ");
+      const combined = [node.ten, node.noiDung, ...links.map(link => link.ten)].join(" ");
       return normalize(combined).includes(query);
     };
 
@@ -457,7 +622,6 @@ Dòng mô tả thứ hai.`,
       icon.append(chevronSvg());
       header.append(icon, el("span", "node-name", node.ten || "Mục chưa đặt tên"));
       if (children.length) header.append(el("span", "node-count", `${children.length} mục con`));
-      if (node.trangThai) header.append(el("span", `status ${statusKind(node.trangThai)}`, node.trangThai));
 
       const body = el("div", "node-body");
       body.hidden = !isOpen;
