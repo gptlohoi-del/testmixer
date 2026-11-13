@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#17315f">
-  <meta name="description" content="Hướng dẫn kiểm tra kết nối âm thanh laptop Windows với mixer Yamaha MG10XU và các ngõ ra dự phòng 6,35 mm.">
-  <title>Kiểm tra kết nối âm thanh Windows ↔ MG10XU</title>
+  <meta name="description" content="Danh sách công việc chuẩn bị hội nghị: kiểm tra kết nối âm thanh MG10XU và khảo sát mạng CelcomDigi H162-383.">
+  <title>Kiểm tra hệ thống âm thanh và mạng hội nghị</title>
 
   <script>
   /*
@@ -25,8 +25,8 @@
   */
 
   const DU_LIEU_CONG_VIEC = {
-    tenDuAn: "KIỂM TRA KẾT NỐI ÂM THANH LAPTOP WINDOWS ↔ MIXER MG10XU",
-    gioiThieu: "Kế hoạch kiểm tra truyền/nhận qua USB để phát nhạc, ghi âm và dịch thuật đồng thời; đồng thời kiểm tra các ngõ ra 6,35 mm làm phương án dự phòng.",
+    tenDuAn: "CHUẨN BỊ HỆ THỐNG DỊCH HỘI NGHỊ — ÂM THANH & MẠNG",
+    gioiThieu: "Các công việc kiểm tra mixer MG10XU, phương án âm thanh dự phòng và khảo sát mạng CelcomDigi H162-383 để chuẩn bị hội nghị.",
     congViec: [
       {
         ten: "1. Công việc chính — Kiểm tra truyền/nhận âm thanh giữa laptop Windows và mixer MG10XU",
@@ -329,6 +329,71 @@ Nhiều cổng 3,5 mm trên laptop chỉ hỗ trợ tai nghe + mic và KHÔNG ph
 Có thể cập nhật các dòng này trong noiDung ngay trên GitHub sau mỗi lần thử.`
           },
         ]
+      },
+      {
+        ten: "3. Công việc mạng — Chạy BAT kiểm tra CelcomDigi H162-383 và gửi báo cáo cho PT qua Zalo",
+        noiDung: `MỤC ĐÍCH
+Thu thập thông tin mạng tại nơi tổ chức hội nghị, để PT có thể kiểm tra dải IP, gateway và phương án kết nối laptop với NR3053 sau này.
+
+THỜI ĐIỂM THỰC HIỆN
+Laptop CHỈ kết nối Wi-Fi CelcomDigi H162-383; CHƯA cắm dây LAN vào NR3053.
+
+KẾT QUẢ MONG ĐỢI
+Tạo được file BAO_CAO_MANG_CELCOMDIGI.txt và gửi chính file TXT cho PT qua cuộc trò chuyện Zalo riêng. Không đăng báo cáo công khai lên GitHub.`,
+        lienKet: [
+          { ten: "Tải file BAT kiểm tra mạng CelcomDigi (cùng thư mục GitHub Pages)", url: "./KIEM_TRA_MANG_CELCOMDIGI.bat" }
+        ],
+        con: [
+          {
+            ten: "3.1. Chuẩn bị trước khi chạy",
+            noiDung: `1. Kết nối laptop Windows với đúng Wi-Fi của CelcomDigi H162-383.
+2. Không nối cáp mạng tới NR3053 hoặc router khác. Tạm ngắt VPN nếu đang sử dụng.
+3. Mở thử một trang web để xác nhận laptop có Internet.
+4. Bảo đảm file KIEM_TRA_MANG_CELCOMDIGI.bat đã được tải về máy.
+5. Không cần mật khẩu quản trị CelcomDigi; công cụ không thay đổi cài đặt router hoặc Windows.`,
+          },
+          {
+            ten: "3.2. Tải BAT từ repository GitHub và chạy trên laptop",
+            noiDung: `1. Trên trang này, bấm liên kết "Tải file BAT kiểm tra mạng CelcomDigi" ở phần công việc số 3.
+2. Nếu trình duyệt hiển thị nội dung file thay vì tải xuống, chọn Save As/Lưu thành tệp và lưu đúng tên KIEM_TRA_MANG_CELCOMDIGI.bat.
+3. Chọn thư mục dễ tìm, chẳng hạn Desktop hoặc Downloads (phải có quyền tạo file trong đó).
+4. Kiểm tra mã nguồn file BAT trước khi chạy. Sau đó nhấp đúp để chạy trên laptop Windows; nếu Windows hiển thị cảnh báo bảo mật, chỉ tiếp tục khi bạn xác nhận đây là file mình tin cậy.
+5. Đợi chương trình kiểm tra xong; chương trình sẽ thông báo nơi lưu báo cáo và mở file TXT bằng Notepad.
+
+LƯU Ý: GitHub Pages chỉ cung cấp liên kết tải file BAT, không thể tự chạy chương trình trên máy của bạn.`,
+          },
+          {
+            ten: "3.3. Kiểm tra file báo cáo TXT đã được tạo",
+            noiDung: `1. Tìm file BAO_CAO_MANG_CELCOMDIGI.txt nằm CÙNG THƯ MỤC với file BAT vừa chạy.
+2. Mở file và kiểm tra các mục: thông tin Wi-Fi (SSID, kênh, tín hiệu, tốc độ liên kết); địa chỉ IPv4/Subnet Mask/Prefix; Default Gateway; DHCP/DNS; tuyến mặc định; ping IP; phân giải DNS transyncai.com; kết nối TCP 443.
+3. Nếu thiếu phần nào, có dòng lỗi hoặc kết quả trống, KHÔNG coi là đã hoàn tất; ghi nhận lỗi và gửi cùng báo cáo cho PT.
+4. Lưu ý: File không chứa mật khẩu Wi-Fi. Tuy nhiên, tên Wi-Fi, địa chỉ IP nội bộ và thông tin cấu hình mạng có thể là thông tin riêng tư.`,
+          },
+          {
+            ten: "3.4. Gửi báo cáo cho PT qua Zalo",
+            noiDung: `1. Mở cuộc trò chuyện Zalo RIÊNG với PT.
+2. Dùng chức năng gửi file/đính kèm tệp để chọn BAO_CAO_MANG_CELCOMDIGI.txt, không chỉ gửi ảnh chụp màn hình.
+3. Gửi kèm lời nhắn: "PT ơi, tôi đã kiểm tra Wi-Fi CelcomDigi H162-383 khi laptop CHỈ kết nối mạng này (chưa nối NR3053). Nhờ PT xem báo cáo TXT và hướng dẫn cấu hình hai mạng trước hội nghị."
+4. Xác nhận PT đã nhận/mở được file. Nếu cần hỗ trợ thêm, gửi ảnh thông báo lỗi kèm theo.
+
+Không đăng file TXT lên repository công khai hoặc GitHub Pages. Website không tự động gửi file cho Zalo.`,
+          },
+          {
+            ten: "3.5. Những nội dung cần kiểm tra riêng sau khi gửi báo cáo",
+            noiDung: `BÁO CÁO ĐÃ GIÚP XÁC ĐỊNH
+• Địa chỉ IP/mặt nạ mạng/gateway mà laptop nhận từ Wi-Fi CelcomDigi.
+• Thông tin kết nối Wi-Fi laptop, DNS và tuyến Internet tại thời điểm đo.
+• Kết quả kiểm tra mạng cơ bản đến Internet, tên miền và HTTPS của transyncai.com.
+
+BÁO CÁO CHƯA ĐỦ ĐỂ KẾT LUẬN
+• Dải IP hiện tại của NR3053, có trùng mạng CelcomDigi hay không (phải kết nối NR3053 và kiểm tra riêng sau).
+• Trạng thái tín hiệu 5G/SIM, giới hạn số người dùng Wi-Fi, mức tải router và độ ổn định khi 100–200 điện thoại cùng kết nối.
+• Khả năng dịch trực tiếp của Transync AI, các máy chủ phụ trợ thực tế, chất lượng Internet lâu dài, tốc độ Speedtest, jitter hoặc mất gói khi đông người.
+• Khả năng cho thiết bị hai mạng truy cập MediaMTX; cần thử đường truyền thực tế.
+
+KẾT LUẬN: TXT đủ cho bước KHẢO SÁT SƠ BỘ mạng CelcomDigi, chưa phải báo cáo nghiệm thu toàn bộ hệ thống.`,
+          }
+        ]
       }
     ]
   };
@@ -458,7 +523,7 @@ Có thể cập nhật các dòng này trong noiDung ngay trên GitHub sau mỗi
 <body>
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">HƯỚNG DẪN KIỂM TRA ÂM THANH · NHIỀU CẤP</p>
+      <p class="eyebrow">KẾ HOẠCH KIỂM TRA HỘI NGHỊ · NHIỀU CẤP</p>
       <h1 id="project-title">Cây triển khai công việc</h1>
       <p id="project-description" class="subtitle"></p>
       <div class="overview" aria-label="Thống kê công việc">
